@@ -12,3 +12,4 @@ services:
       - CPU_CORES=2
       - BIT_RATE=128k
       - SAMPLE_RATE=44100
+      - AUDIO_CHANNELS=2

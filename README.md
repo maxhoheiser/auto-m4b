@@ -88,6 +88,7 @@ services:
       - SLEEPTIME=1m
       - BIT_RATE=128k
       - SAMPLE_RATE=44100
+      - AUDIO_CHANNELS=2
 ```
 
 ## To Manually Set Chapters:

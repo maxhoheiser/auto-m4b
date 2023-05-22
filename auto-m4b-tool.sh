@@ -45,6 +45,16 @@ else
 	  sleeptime="$SLEEPTIME"
 fi
 
+#set audio channels
+if [ -z "$AUDIO_CHANNELS" ]
+then
+	  echo "Using standard 2 audio channels."
+	  audiochannels=2
+else
+	  echo "Using $AUDIO_CHANNELS audio channels."
+	  audiochannels="$AUDIO_CHANNELS"
+fi
+
 #change to the merge folder, keeps this clear and the script could be kept inside the container
 cd "$inputfolder" || return
 
@@ -124,7 +134,7 @@ while [ $m -ge 0 ]; do
 					fi
 					echo The folder "$book" will be merged to "$m4bfile"
 					echo Starting Conversion
-					m4b-tool merge "$book" -n -q --audio-bitrate="$bit" --audio-samplerate="$sample" --skip-cover --use-filenames-as-chapters --no-chapter-reindexing --audio-codec=libfdk_aac --jobs="$CPUcores" --output-file="$m4bfile" --logfile="$logfile"
+					m4b-tool merge "$book" -n -q --audio-bitrate="$bit" --audio-samplerate="$sample" --audio-channels="$audiochannels" --skip-cover --use-filenames-as-chapters --no-chapter-reindexing --audio-codec=libfdk_aac --jobs="$CPUcores" --output-file="$m4bfile" --logfile="$logfile"
 					mv "$inputfolder$book" "$binfolder"
 				fi
 				echo Finished Converting

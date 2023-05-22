@@ -115,6 +115,7 @@ ENV CPU_CORES=""
 ENV SLEEPTIME=""
 ENV BIT_RATE=""
 ENV SAMPLE_RATE=""
+ENV AUDIO_CHANNELS=""
 
 #Merge-Script importieren
 ADD runscript.sh /etc/service/bot/run
