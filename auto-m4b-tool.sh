@@ -102,8 +102,16 @@ while [ $m -ge 0 ]; do
 					mv "$inputfolder$book" "$outputfolder"
 				else
 					echo Sampling $mpthree
-					bit=$(ffprobe -hide_banner -loglevel 0 -of flat -i "$mpthree" -select_streams a -show_entries format=bit_rate -of default=noprint_wrappers=1:nokey=1)
-					echo Bitrate = $bit
+					# get the bitrate of the mp3 file
+					if [ -z "$BIT_RATE" ]
+					then
+						bit=$(ffprobe -hide_banner -loglevel 0 -of flat -i "$mpthree" -select_streams a -show_entries format=bit_rate -of default=noprint_wrappers=1:nokey=1)
+						echo "Using bitrate="$bit" of the original file, since no bitrate was defined."
+
+					else
+						bit="$BIT_RATE"
+						echo "Using defined bitrate="$bit"."
+					fi
 					echo The folder "$book" will be merged to "$m4bfile"
 					echo Starting Conversion
 					m4b-tool merge "$book" -n -q --audio-bitrate="$bit" --skip-cover --use-filenames-as-chapters --no-chapter-reindexing --audio-codec=libfdk_aac --jobs="$CPUcores" --output-file="$m4bfile" --logfile="$logfile"

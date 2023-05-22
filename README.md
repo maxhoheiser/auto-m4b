@@ -86,6 +86,7 @@ services:
       - PGID=1000
       - CPU_CORES=2
       - SLEEPTIME=1m
+      - BIT_RATE=128k
 ```
 
 ## To Manually Set Chapters:
