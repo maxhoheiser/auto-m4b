@@ -87,6 +87,7 @@ services:
       - CPU_CORES=2
       - SLEEPTIME=1m
       - BIT_RATE=128k
+      - SAMPLE_RATE=44100
 ```
 
 ## To Manually Set Chapters:
